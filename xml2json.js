@@ -9,7 +9,7 @@ module.exports = {
 //***********************************************************************
 function xml2json(xmlStr){ 
     xmlStr = cleanXML(xmlStr);
-    return xml2jsonRecurse(xmlStr,0); 
+    return xml2jsonRecurse(xmlStr); 
 }
 
 //***********************************************************************
@@ -35,7 +35,7 @@ function xml2jsonRecurse(xmlStr) {
         }
         inner_substring = xmlStr.substring(openingTag.length, indexClosingTag);
         if (inner_substring.match(/<[^\/][^>]*>/)) {
-            tempVal = xml2json(inner_substring);
+            tempVal = xml2jsonRecurse(inner_substring);
         }
         else {
             tempVal = inner_substring;
